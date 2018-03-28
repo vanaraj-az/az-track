@@ -1,0 +1,5 @@
+<div *ngIf="controls.invalid && controls.dirty">
+    <p *ngIf="controls.errors?.required">
+        <ng-content></ng-content>
+    </p>
+</div>

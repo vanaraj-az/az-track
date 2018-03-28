@@ -1,0 +1,111 @@
+<div class="page-header">
+    <div class="page-breadcrumbs">
+        <ul class="list-inline">
+            <li class="list-inline-item">
+                <a href="">Home</a>
+            </li>
+            <li class="list-inline-item">
+                /
+            </li>
+            <li class="list-inline-item">
+                <a href="">country</a>
+            </li>
+            <li>
+              <button class="btn btn-lg btn-outline-primary float-right" (click)="open(content)">Add countries</button>
+            </li>
+        </ul>
+    </div>
+    <div class="page-title">
+        <h1>Country</h1>
+    </div>
+  </div>
+  <div class="page-content container">
+      <ng-template #content let-c="close" let-d="dismiss">
+          <div class="modal-header">
+              <h4 class="modal-title">Add Countries</h4>
+              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <form  [formGroup]="countryForm">
+                  <div class="form-group row">
+                      <label for="country" class="col-md-4 col-sm-4 col-xs4 col-form-label text-align">Country Name</label>
+                      <div class="col-md-6 col-sm-6 col-xs-6">
+                          <input type="text" id="country" placeholder="Enter country name" [ngClass]="{'is-invalid': countryForm.get('country').invalid }" class="form-control" formControlName="country">
+                          <div class="invalid-feedback">
+                              <error-required [controls]="countryForm.get('country')">
+                                  this field is required
+                              </error-required>
+                              <error-pattern [controls]="countryForm.get('country')">
+                                  Invalid Input
+                              </error-pattern>
+                          </div>
+                      </div>
+                      <div class="col-md-2 col-sm-2 col-xs-2">
+                          <button class="btn btn-success" [disabled]="countryForm.invalid" (click)="addCountry()">Add</button>
+                      </div>
+                  </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-outline-primary"  (click)="c('Close click')">close</button>
+          </div>
+      </ng-template>
+      <div class="card">
+          <div class="card-header">
+              <div class="row">
+                  <div class="col-md-6 col-sm-6 col-xs-6 text-center">
+                      <b>Country List</b>
+                  </div>
+                  <div class=" col-md-6 col-sm-6 col-xs-6 text-center">
+                      <b>Newly added countries</b>
+                  </div>
+              </div>
+          </div>
+          <div class="card-body">
+              <div class="row">
+                  <div class="col-md-6 col-sm-6 col-xs-6">
+                      <div class="well">
+                          <div class="scroll">
+                              <div class="list-group" *ngFor="let country of countryList">
+                                  <a class="list-group-item">{{country}}</a>
+                              </div>
+                          </div> 
+                      </div>
+                  </div>
+                  <div class="col-md-6 col-xs-6 col-sm-6">
+                      <div class="list-group list-sm" *ngFor="let countryadd of countryAdd; let i= index;">
+                          <div class="list-group-item">
+                              <div class="row">
+                                  <div class="col-md-8 col-sm-8 col-xs-8">
+                                      {{countryadd}}
+                                  </div>
+                                  <div class="col-md-1 col-sm-1 col-xs-1">
+                                      <button class="btn btn-outline-success btn-sm" (click)="editCountry(i,content)"><span class="fa fa-edit"></span></button>
+                                  </div>
+                                  <div class="col-md-1 col-sm-1 col-xs-1">
+                                      <button class="btn btn-outline-danger btn-sm" (click)="deleteCountry(i)"><span class="fa fa-minus"></span></button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="card-footer">
+              <div class="row">
+                  <div class="col-md-10 col-sm-10 col-xs-10"></div>
+                  <div class="col-md-1 col-sm-1 col-xs-1">
+                      <button type="submit" class="btn btn-outline-primary float-right" ><a  href="">Back</a></button>
+                  </div>
+                  <div class="col-md-1 col-sm-1 col-xs-1">
+                      <button type="submit" (click)="submit()" class="btn btn-outline-primary float-right" >Submit</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div *ngIf = "errorMsg" class="alert alert-danger">
+          {{errorMsg}}
+      </div>
+  </div>

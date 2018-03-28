@@ -1,0 +1,36 @@
+.text-align{
+    text-align: center;
+}
+
+.margin-top{
+
+    margin-top: 20px;
+}
+
+.table{
+    margin-left: 100px;
+}
+
+.bigone {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  
+.main {
+flex: 1;
+}
+
+.scroll{
+    max-height: 250px;
+    overflow-y: scroll
+}
+  
+.main {
+flex: 1;
+}
+
+.scroll{
+    max-height: 250px;
+    overflow-y: scroll
+}

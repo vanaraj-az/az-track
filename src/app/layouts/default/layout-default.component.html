@@ -1,0 +1,112 @@
+<div class="wrapper">
+    <div class="header fixed-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2 col-sm-2 col-xs-2">
+                    <img src="./assets/images/logo.png" width="150">
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <form class="header-form">
+                        <div class="row">
+                            <div class="col-md-2 col-sm-2 col-xs-2"></div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <input class="form-control" id="inputdefault" type="text">
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-sm-5 col-xs-5">
+                                <select class="form-control" name="" id="">
+                                    <option value="">One</option>
+                                    <option value="">Two</option>
+                                    <option value="">Three</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    <ul class="list-inline header-menus float-right">
+                        <li class="list-inline-item">
+                            <a href="">Logged in as kadhir</a>
+                        </li>
+                        <li class="list-inline-item" ngbDropdown placement="bottom-right">
+                            <a ngbDropdownToggle class="icon-profile">
+                                <i class="fas fa-user"></i>
+                                Profile
+                            </a>
+                            <ul ngbDropdownMenu>
+                                <li class="dropdown-item">
+                                    <a href="">One</a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a href="">Two</a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a href="">three</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="" class="btn btn-secondary btn-sm logout">
+                                <i class="fas fa-sign-out-alt"></i>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="row no-gutters">
+            <div class="col-md-2 col-sm-2 col-xs-2">
+                <div class="sidebar">
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="">Home</a>
+                        </li>
+                        <li>
+                            <a  routerLink="client">Client</a>
+                        </li>
+                        <li>
+                            <a routerLink="project">Project</a>
+                        </li>
+                        <li>
+                            <a routerLink="country">Country</a>
+                        </li>
+                        <li>
+                            <a href="">Help</a>
+                        </li>
+                        <li class="list-inline-item" ngbDropdown placement="bottom-left">
+                            <a ngbDropdownToggle>Profile</a>
+                            <ul ngbDropdownMenu>
+                                <li class="dropdown-item">
+                                    <a href="">One</a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a href="">Two</a>
+                                </li>
+                                <li class="dropdown-item">
+                                    <a href="">three</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="">Help</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-10 col-sm-10 col-xs-10">
+                <div class="container-fluid container-full-width">
+                    <div class="content-body margin-left">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="sample">Sample Image</div>

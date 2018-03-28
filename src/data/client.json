@@ -1,0 +1,15 @@
+[{
+    "companyName" : "Assistanz",
+    "address"  : "Coimbatore",
+    "email" : "vanaraj@assistanz.com",
+    "phoneNumber" : "9944328923",
+    "country" : "India",
+    "contactPerson" : [
+        {
+            "name" : "Vanaraj",
+            "responsible" : "Project",
+            "phoneNumber" : "9944328923",
+            "email" : "vanaraj@assistanz.com"
+        }
+    ]
+}]

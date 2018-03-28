@@ -1,0 +1,68 @@
+.wrapper {
+
+}
+
+.header {
+    padding: 5px 0px 0px 0px;
+    background-color: #f8f9fa;
+    -webkit-box-shadow: 2px 2px 1px 0px rgba(250,250,250,1);
+    -moz-box-shadow: 2px 2px 1px 0px rgba(250,250,250,1);
+    box-shadow: 2px 2px 1px 0px rgba(250,250,250,1);
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.header-form {
+    margin-top: 10px;
+}
+
+ul.header-menus {
+    margin-top: 20px;
+}
+
+.header a {
+    color : #151b1e;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.header a.logout {
+    color: white;
+}
+
+.content {
+    margin-top: 70px;
+}
+
+.sidebar {
+    position:fixed;
+    height: 100%;
+    width: 16%;
+    padding: 13px;
+    -webkit-box-shadow: 4px 0px 5px 0px rgba(189,182,189,0.3);
+    -moz-box-shadow: 4px 0px 5px 0px rgba(189,182,189,0.3);
+    box-shadow: 4px 0px 5px 0px rgba(189,182,189,0.3);
+    background-color: #f8f9fa;
+}
+
+.sidebar li {
+    padding-bottom: 12px;
+}
+
+.sidebar li a {
+    color : #151b1e;
+    cursor: pointer;
+}
+
+.content-body {
+    padding: 10px 0px;
+    right: 3px;
+    position: relative;
+}
+
+a.icon-profile > svg {
+    font-size: 13px;
+    color : #151b1e;
+}
+.margin-left{
+    margin-left: 80px;
+}

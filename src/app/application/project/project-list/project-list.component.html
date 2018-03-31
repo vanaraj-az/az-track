@@ -1,0 +1,41 @@
+<div>
+    <ngb-accordion #acc="ngbAccordion">
+        <ngb-panel>
+            <ng-template ngbPanelTitle>
+                <span text-secondary><h5><b>Project List</b></h5></span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr class="text-center text-secondary font-italic">
+                                <th>#</th>
+                                <th>ProjectName</th>
+                                <th>Description</th>
+                                <th>Client</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let project of projectList;let i=index;" class="text-center">
+                                <td>{{i+1}}</td>
+                                <td>{{project.projectName}}</td>
+                                <td>{{project.description}}</td>
+                                <td>{{project.client}}</td>
+                                <td>
+                                    <div ngbDropdown>
+                                        <button class="btn btn-outline-secondary" id="dropdownConfig" ngbDropdownToggle>Action</button>
+                                        <div ngbDropdownMenu aria-labelledby="dropdownConfig">
+                                        <button class="dropdown-item">Edit</button>
+                                        <button class="dropdown-item">Delete</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </ng-template>
+        </ngb-panel>
+    </ngb-accordion>
+</div>

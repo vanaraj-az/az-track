@@ -1,175 +1,80 @@
-<div class="page-content">
-    <form  [formGroup]="clientForm">
-        <div class="row container">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="form-group row">
-                    <label class="col-md-2 col-sm-2 col-xs- 2 col-form-label">Company Name</label>
-                    <div class="col-md-10 col-xs-10 col-sm-10">
-                        <input type="text" placeholder="please enter the name" [ngClass]="{'is-invalid':clientForm.get('companyName').invalid }" class="form-control" formControlName="companyName">
-                        <div class="invalid-feedback">
-                            <error-required [controls]="clientForm.get('companyName')">
-                                This field is required
-                            </error-required>
-                            <error-minlength [controls]="clientForm.get('companyName')">
-                                Too short
-                            </error-minlength>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="form-group row">
-                    <label class="col-md-2 col-sm-2 col-xs-2 col-form-label">Address</label>
-                    <div class="col-md-10 col-sm-10 col-xs-10">
-                        <textarea type="text" placeholder="please enter the address" [ngClass]="{'is-invalid': clientForm.get('address').invalid }" class="form-control" formControlName="address"></textarea>
-                        <div class="invalid-feedback">
-                            <error-required [controls]="clientForm.get('address')">
-                                This field is required
-                            </error-required>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="form-group row">
-                    <label for="staticEmail" class="col-md-2 col-xs-2 col-sm-2 col-form-label">Email</label>
-                    <div class="col-md-10 col-sm-10 col-xs-10">
-                        <input type="text" placeholder="please enter the email" [ngClass]="{'is-invalid': clientForm.get('email').invalid }" class="form-control" formControlName="email">
-                        <div class="invalid-feedback">
-                            <error-required [controls]="clientForm.get('email')">
-                                This field is required
-                            </error-required>
-                            <error-pattern [controls]="clientForm.get('email')">
-                                Invalid Email
-                            </error-pattern>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="form-group row">
-                    <label class="col-md-2 col-sm-2 col-xs-2 col-form-label">Phone Number</label>
-                    <div class="col-md-10 col-sm-10 col-xs-10">
-                        <input type="text" placeholder="please enter the number" [ngClass]="{'is-invalid': clientForm.get('phoneNumber').invalid }" class="form-control" formControlName="phoneNumber">
-                        <div class="invalid-feedback">
-                            <error-required [controls]="clientForm.get('phoneNumber')">
-                                Required Field
-                            </error-required>
-                            <error-minlength [controls]="clientForm.get('phoneNumber')">
-                                Enter 10 digit number
-                            </error-minlength>
-                            <error-maxlength [controls]="clientForm.get('phoneNumber')">
-                                Enter 10 digit number
-                            </error-maxlength>
-                            <error-pattern [controls]="clientForm.get('phoneNumber')">
-                                Invalid input
-                            </error-pattern>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="form-group row">
-                    <label class="col-md-2 col-sm-2 col-xs-2 col-form-label" for="typeahead-focus">Country</label>
-                    <div class="col-md-10 col-sm-10 col-xs-10">
-                        <input id="typeahead-focus" placeholder="search" type="text" [ngClass]="{'is-invalid': clientForm.get('country').invalid }" (click)="click$.next($event.target.value)" ngbTypeahead-editable="false" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" (focus)="focus$.next($event.target.value)" #instance="ngbTypeahead" formControlName="country">
-                        <div class="invalid-feedback">
-                            <error-required [controls]="clientForm.get('country')">
-                                Required Field
-                            </error-required>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="card">
-                    <div class="card-header">Contact Person
-                        <button class="btn btn-outline-default float-right" (click)="addMoreContact()">Add More Contact</button>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <label class="col-form-label col-md-3 col-sm-3 col-xs-3 text-center">Name</label>
-                            <label class="col-form-label col-md-3 col-xs-3 col-sm-3 text-center">Responsible</label>
-                            <label class="col-form-label col-md-2 col-xs-2 col-sm-2 text-center">Phone Number</label>
-                            <label class="col-form-label col-md-3 col-sm-2 col-xs-2 text-center">Email</label>
-                            <label class="col-form-label col-md-1 col-sm-1 col-xs-1 text-center">Action</label>
-                        </div>
-                        <div formArrayName="contactPerson" class=" container">
-                            <div *ngFor="let contactPerson of clientForm.get('contactPerson').controls; let i = index;">
-                                <div [formGroupName]="i" class="row">
-                                    <div class="form-group col-md-3 col-xs-3 col-sm-3">
-                                        <input type="text" [ngClass]="{'is-invalid': contactPerson.get('name').invalid }" class="form-control" formControlName="name">
-                                        <div class="invalid-feedback">
-                                            <error-required [controls]="contactPerson.get('name')">
-                                                Required Field
-                                            </error-required>
-                                            <error-minlength [controls]="contactPerson.get('name')">
-                                                Too short..
-                                            </error-minlength>
-                                        </div>
-                                    </div>
-            
-                                    <div class="form-group col-md-3 col-sm-3 col-xs-3">
-                                        <input type="text" [ngClass]="{'is-invalid': contactPerson.get('responsible').invalid }" class="form-control" formControlName="responsible">
-                                        <div class="invalid-feedback">
-                                            <error-required [controls]="contactPerson.get('responsible')">
-                                                Required Field
-                                            </error-required>
-                                        </div>
-                                    </div>
-            
-                                    <div class="form-group col-md-2 col-sm-2 col-xs-2">
-                                        <input type="text" [ngClass]="{'is-invalid': contactPerson.get('phoneNumber').invalid }" class="form-control" formControlName="phoneNumber">
-                                        <div class="invalid-feedback">
-                                            <error-required [controls]="contactPerson.get('phoneNumber')">
-                                                Required Field
-                                            </error-required>
-                                            <error-minlength [controls]="contactPerson.get('phoneNumber')">
-                                                Enter 10 digit number
-                                            </error-minlength>
-                                            <error-maxlength [controls]="contactPerson.get('phoneNumber')">
-                                                Enter 10 digit number
-                                            </error-maxlength>
-                                            <error-pattern [controls]="contactPerson.get('phoneNumber')">
-                                                Invalid Input
-                                            </error-pattern>
-                                        </div>
-                                    </div>
-            
-                                    <div class="form-group col-md-3 col-sm-3 col-xs-3">
-                                        <input type="text" [ngClass]="{'is-invalid': contactPerson.get('email').invalid }" class="form-control" formControlName="email">
-                                        <div class="invalid-feedback">
-                                            <error-required [controls]="contactPerson.get('email')">
-                                                This field is required
-                                            </error-required>
-                                            <error-pattern [controls]="contactPerson.get('email')">
-                                                Invalid Email
-                                            </error-pattern>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-1 col-xs-1 col-sm-1">
-                                        <div class="row">
-                                            <div class="col-md-6 col-xs-6 col-sm-6">
-                                                <button class="btn btn-success btn-sm" [disabled]="!contactPerson.valid" (click)="addContact()"><span class="fa fa-plus"></span></button>
+<div class="margin-top">
+    <ngb-accordion #acc="ngbAccordion">
+        <ngb-panel>
+            <ng-template ngbPanelTitle>
+                <span text-secondary><h5><b>Client List</b></h5></span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr class="text-center text-secondary font-italic">
+                                <th>#</th>
+                                <th>Company Name</th>
+                                <th>Address</th>
+                                <th>Email</th>
+                                <th>Mobile</th>
+                                <th>Country</th>
+                                <th>Contact Persons</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let client of clientList;let i=index;" class="text-center">
+                                <td>{{i+1}}</td>
+                                <td>{{client.companyName}}</td>
+                                <td>{{client.address}}</td>
+                                <td>{{client.email}}</td>
+                                <td>{{client.phoneNumber}}</td>
+                                <td>{{client.country}}</td>
+                                <td>
+                                    <p>
+                                        <button type="button" class="btn btn-outline-secondary" (click)="isCollapsed = !isCollapsed"
+                                                [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                                            Click Me
+                                        </button>
+                                    </p>
+                                    <div id="collapseExample" [ngbCollapse]="isCollapsed">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr class="text-center text-secondary font-italic">
+                                                                <th>Name</th>
+                                                                <th>Responsible</th>
+                                                                <th>Email</th>
+                                                                <th>Mobile</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="text-center">
+                                                                <td>{{client.contactPerson[i].name}}</td>
+                                                                <td>{{client.contactPerson[i].responsible}}</td>
+                                                                <td>{{client.contactPerson[i].email}}</td>
+                                                                <td>{{client.contactPerson[i].phoneNumber}}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
-                                            <div class="col-md-6 col-sm-6 col-xs-6">
-                                                <button class="btn btn-danger btn-sm" (click)="deleteContact(i)"><span class="fa fa-minus"></span></button>
-                                            </div> 
-                                        </div>   
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                </td>
+                                <td>
+                                    <div ngbDropdown>
+                                        <button class="btn btn-outline-secondary" id="dropdownConfig" ngbDropdownToggle>Action</button>
+                                        <div ngbDropdownMenu aria-labelledby="dropdownConfig">
+                                        <button class="dropdown-item">Edit</button>
+                                        <button class="dropdown-item">Delete</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-            </div>
-        </div>
-    </form>
-    <div class="row margin-top">
-        <div class="col-md-9 col-sm-9 col-xs-9"></div>
-        <div class="col-md-1 col-sm-1 col-xs-1">
-            <a  href=""><button type="submit" class="btn btn-outline-primary float-right" >Back</button></a>
-        </div>
-        <div class="col-md-1 col-sm-1 col-xs-1">
-            <button type="submit" (click)="submitClient()" [disabled]="!clientForm.valid" class="btn btn-outline-primary float-right" >Submit</button>
-        </div>
-        <div class="col-md-2 col-sm-2 col-xs-2"></div>
-    </div>
+            </ng-template>
+        </ngb-panel>
+    </ngb-accordion>
 </div>
-

@@ -1,0 +1,107 @@
+
+<div class="page-content">
+    <form  [formGroup]="workLogForm">
+        <div class="row">
+            <div class="col-md-12 col-md-sm col-xs-12">
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-md-2 col-sm-2 col-xs-2 col-form-label">Project Name</label>
+                    <div class="col-md-10 col-sm-10 col-xs-10">
+                        <input type="text" [ngClass]="{'is-invalid': workLogForm.get('projectName').invalid}" class="form-control" placeholder="Enter the project name" formControlName="projectName">
+                        <option *ngFor="let project of project ">{{projectData}}</option>
+                        <div class="invalid-feedback">
+                            <error-required [controls]="workLogForm.get('projectName')">
+                                This field is required
+                            </error-required>
+                            <error-minlength [controls]="workLogForm.get('projectName')">
+                                Too short
+                            </error-minlength>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-md-2 col-sm-2 col-xs-2 col-form-label">Project ID</label>
+                    <div class="col-md-10 col-sm-10 col-xs-10">
+                        <input type="text" [ngClass]="{'is-invalid': workLogForm.get('projectId').invalid}" class="form-control" placeholder="project Id" formControlName="projectId">
+                        <div class="invalid-feedback">
+                            <error-required [controls]="workLogForm.get('projectId')">
+                                This field is required
+                            </error-required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-md-12 col-sm-12 col-xs-12 col-form-label">Original Estimation Time </label>
+                </div>
+               
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-md-2 col-sm-2 col-xs-2 col-form-label">Worked Hours</label>
+                    <div class="col-md-2 col-sm-2 col-xs-2">
+                        <input type="text" [ngClass]="{'is-invalid': workLogForm.get('workedHours').invalid}" class="form-control" placeholder="worked hours" formControlName="workedHours">
+                        <div class="invalid-feedback">
+                            <error-required [controls]="workLogForm.get('workedHours')">
+                                This field is required
+                            </error-required>
+                        </div>
+                    </div>
+                    <label for="staticEmail" class="col-md-2 col-sm-2 col-xs-2 col-form-label">Worked Hours</label>
+                    <div class="col-md-2 col-sm-2 col-xs-2">
+                        <input type="text" [ngClass]="{'is-invalid': workLogForm.get('workedHours').invalid}" class="form-control" placeholder="worked hours" formControlName="workedHours">
+                        <div class="invalid-feedback">
+                            <error-required [controls]="workLogForm.get('workedHours')">
+                                This field is required
+                            </error-required>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-md-2 col-xs-2 col-sm-2 col-form-label">Attachment</label>
+                    <div class="col-md-10 col-sm-10 col-xs-10">
+                        <input type="file" [ngClass]="{'is-invalid': workLogForm.get('attachment').invalid}" class="form-control" formControlName="attachment">
+                    </div>
+               </div>
+
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-md-2 col-xs-2 col-sm-2 col-form-label">Comments</label>
+                    <div class="col-md-10 col-sm-10 col-xs-10">
+                        <textarea type="text" placeholder="Enter the Comments" class="form-control" formControlName="comments"></textarea>
+                        <div class="invalid-feedback">
+                            <error-required [controls]="workLogForm.get('comments')">
+                                This field is required
+                            </error-required>
+                            <error-minlength [controls]="workLogForm.get('comments')">
+                                Too short
+                            </error-minlength>
+                        </div> 
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-md-2 col-xs-2 col-sm-2 col-form-label">Status</label>
+                    <div class="col-md-10 col-sm-10 col-xs-10">
+                        <select type="text" [ngClass]="{'is-invalid': workLogForm.get('status').invalid}" class="form-control" formControlName="status">
+                            <option *ngFor="let status of status">{{status}}</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            <error-required [controls]="workLogForm.get('status')">
+                                This field is required
+                            </error-required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-md-10 col-sm-10 col-xs-10"></div>
+        <div class="col-md-1 col-sm-1 col-xs-1">
+            <a href=""><button type="submit" class="btn btn-outline-primary float-right" >Back</button></a>
+        </div>
+        <div class="col-md-1 col-sm-1 col-xs-1">
+            <button [disabled]="!workLogForm.valid" class="btn btn-outline-primary float-right">Save</button>
+        </div>
+    </div>
+</div>

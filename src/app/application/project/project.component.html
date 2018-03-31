@@ -16,62 +16,7 @@
         <h1>Projects</h1>
     </div>
 </div>
-
-<div class="page-content">
-    <form  [formGroup]="projectForm">
-        <div class="row">
-            <div class="col-md-12 col-md-sm col-xs-12">
-                <div class="form-group row">
-                    <label for="staticEmail" class="col-md-2 col-sm-2 col-xs-2 col-form-label">Project Name</label>
-                    <div class="col-md-10 col-sm-10 col-xs-10">
-                        <input type="text" [ngClass]="{'is-invalid': projectForm.get('projectName').invalid}" class="form-control" placeholder="Enter the project name" formControlName="projectName">
-                        <div class="invalid-feedback">
-                            <error-required [controls]="projectForm.get('projectName')">
-                                This field is required
-                            </error-required>
-                            <error-minlength [controls]="projectForm.get('projectName')">
-                                Too short
-                            </error-minlength>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="staticEmail" class="col-md-2 col-xs-2 col-sm-2 col-form-label">Project Description</label>
-                    <div class="col-md-10 col-sm-10 col-xs-10">
-                        <textarea type="text" placeholder="Enter the project description" [ngClass]="{'is-invalid': projectForm.get('description').invalid}" class="form-control" formControlName="description"></textarea>
-                        <div class="invalid-feedback">
-                            <error-required [controls]="projectForm.get('description')">
-                                This field is required
-                            </error-required>
-                            <error-minlength [controls]="projectForm.get('description')">
-                                Too short
-                            </error-minlength>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="typeahead-focus" class="col-md-2 col-xs-2 col-sm-2 col-form-label">Client</label>
-                    <div class="col-md-10 col-sm-10 col-xs-10">
-                        <input id="typeahead-focus" placeholder="search" type="text" class="form-control" [ngClass]="{'is-invalid' : projectForm.get('client').invalid || projectForm.get('client').pristine}" [(ngModel)]="model" [ngbTypeahead]="search" (focus)="focus$.next($event.target.value)" #instance="ngbTypeahead" formControlName="client">
-                        <div class="invalid-feedback">
-                            <error-required [controls]="projectForm.get('client')">
-                                This field is required
-                            </error-required>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
-    <div class="row">
-        <div class="col-md-10 col-sm-10 col-xs-10"></div>
-        <div class="col-md-1 col-sm-1 col-xs-1">
-            <a href=""><button type="submit" class="btn btn-outline-primary float-right" >Back</button></a>
-        </div>
-        <div class="col-md-1 col-sm-1 col-xs-1">
-            <button [disabled]="!projectForm.valid" class="btn btn-outline-primary float-right" (click)="addProject()">Submit</button>
-        </div>
-    </div>
-</div>
+<project-add></project-add>
+<project-list></project-list>
 
     

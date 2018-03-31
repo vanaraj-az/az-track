@@ -4,16 +4,16 @@ import { AppCommonModule } from '../../common/common.module';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ClientComponent } from './client.component';
-import { ClientAddComponent } from './client-add/client-add.component';
-import {ClientListComponent} from './client-list/client-list.component';
-import { ClientService } from './services/client.service';
+import { IssueComponent } from './issue.component';
+import { IssueListComponent } from './issue-list/issue-list.component';
+import { IssueAddComponent } from './issue-add/issue-add.component';
+import { IssueService } from './services/issue.service';
 
 
-const clientRoutes : Routes = [
+const issueRoutes : Routes = [
     {
-        path: 'client',
-        component: ClientComponent
+        path : "issue",
+        component: IssueComponent
     }
 ]
 
@@ -22,19 +22,19 @@ const clientRoutes : Routes = [
         CommonModule,
         ReactiveFormsModule,
         AppCommonModule,
-        RouterModule.forRoot(clientRoutes),
+        RouterModule.forRoot(issueRoutes),
         NgbModule.forRoot()
     ],
     declarations: [
-        ClientComponent,
-        ClientListComponent,
-        ClientAddComponent
+        IssueComponent,
+        IssueListComponent,
+        IssueAddComponent
     ],
     providers : [
-        ClientService
+        IssueService
     ],
     exports : [
         RouterModule
     ]
 })
-export class ClientModule { }
+export class IssueModule { }

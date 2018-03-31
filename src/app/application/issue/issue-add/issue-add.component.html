@@ -1,0 +1,92 @@
+<div class="page-content">
+    <form  [formGroup]="issueForm">
+        <div class="row">
+            <div class="col-md-12 col-md-sm col-xs-12">
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-md-2 col-xs-2 col-sm-2 col-form-label">Issue Type</label>
+                    <div class="col-md-10 col-sm-10 col-xs-10">
+                        <select [ngClass]="{'is-invalid': issueForm.get('issueType').invalid}" class="form-control" formControlName="issueType">
+                            <option hidden>Nothing Selected</option>
+                            <option *ngFor="let issueType of issueType;let i=index;">{{issueType}}</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            <error-required [controls]="issueForm.get('title')">
+                                This field is required
+                            </error-required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-md-2 col-xs-2 col-sm-2 col-form-label">Title</label>
+                    <div class="col-md-10 col-sm-10 col-xs-10">
+                        <input type="text" [ngClass]="{'is-invalid': issueForm.get('title').invalid}" class="form-control" formControlName="title">
+                        <div class="invalid-feedback">
+                            <error-required [controls]="issueForm.get('title')">
+                                This field is required
+                            </error-required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-md-2 col-xs-2 col-sm-2 col-form-label">Description</label>
+                    <div class="col-md-10 col-sm-10 col-xs-10">
+                        <textarea type="text" placeholder="Enter the description" [ngClass]="{'is-invalid': issueForm.get('description').invalid}" class="form-control" formControlName="description"></textarea>
+                        <div class="invalid-feedback">
+                            <error-required [controls]="issueForm.get('description')">
+                                This field is required
+                            </error-required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-md-2 col-xs-2 col-sm-2 col-form-label">Original Estimation</label>
+                    <div class="col-md-10 col-sm-10 col-xs-10">
+                        <input class="form-control" placeholder="Hours" [ngClass]="{'is-invalid': issueForm.get('originalEstimation').invalid}" formControlName="originalEstimation">
+                    </div>
+                    <div class="invalid-feedback">
+                        <error-required [controls]="issueForm.get('originalEstimation')">
+                            This field is required
+                        </error-required>
+                    </div>
+                    <div class="invalid-feedback">
+                        <error-pattern [controls]="issueForm.get('originalEstimation')">
+                            invalid input
+                        </error-pattern>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2 col-xs-2 col-sm-2 col-form-label">Attachment</label>
+                    <div class="col-md-10 col-sm-10 col-xs-10 file-upload">    
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" placeholder="Choose File.." class="custom-file-input form-control" id="inputGroupFile04" [ngClass]="{'is-invalid': issueForm.get('attachment').invalid}" formControlName="attachment">
+                                <label class="custom-file-label" for="inputGroupFile04">{{issueForm.get('attachment').value}}</label>
+                            </div>
+                        </div>
+                        <div class="invalid-feedback">
+                            <error-required [controls]="issueForm.get('attachment')">
+                                This field is required
+                            </error-required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <label *ngIf ="errorMsg" [ngClass]="'error'" class="alert alert-danger">{{errorMsg}}</label>
+        </div>
+        <div class="col-md-1 col-sm-3 col-xs-1">
+            <a href=""><button type="submit" class="btn btn-outline-primary float-right" >Back</button></a>
+        </div>
+        <div class="col-md-1 col-sm-3 col-xs-1">
+            <button class="btn btn-outline-primary float-right" (click)="submitIssue()">Submit</button>
+        </div>
+    </div>
+</div>

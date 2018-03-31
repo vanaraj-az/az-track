@@ -8,21 +8,18 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 import { error } from 'protractor';
 
-
 @Injectable()
-export class ClientService {
+export class IssueService {
 
-    private urlCountry : String = "/data/country.json";
-    private url : String = "";
-    
+    private url : String = "data/issue.json";
 
     constructor(private httpService : HttpService) {
     }
 
     insert(data : JSON) {
-        return this.httpService.post("http://localhost:8080/client/update", data)
+        return this.httpService.post("http://localhost:8080/issue/add", data)
                                 .map(this.successMessage)
-                                .catch(this.errorHandler);  
+                                .catch(this.errorHandler);
     }
 
     successMessage(res : Response){
@@ -30,34 +27,23 @@ export class ClientService {
         return body;
     }
 
-
     errorHandler(error : HttpErrorResponse){
         return Observable.throw(error.message || "Server Error");
     }
 
-
     findAll() {
-        return this.httpService.get(this.url);
+        return this.httpService.get("");
     }
 
-
-    delete(id : Number) {
-        return this.httpService.delete(this.url + "?" + id);
+    findById(id : Number) {
+        return this.httpService.get(this.url + "?" + id);
     }
 
+    getIssue(){
+        return this.httpService.get("/data/issue.json")
+    } 
     
-    update(id : Number , data) {
-        return this.httpService.update(this.url + "/" , id);
-    }
-
-
-    //get country from json
-    getCountry(){
-        return this.httpService.get("/data/country.json");
-        // http://localhost:8080/country/call
-    }
-
-    getClient(){
-        return this.httpService.get("/data/client.json");
-    }
+    getIssueType(){
+        return this.httpService.get("/data/issuetype.json")
+    } 
 }

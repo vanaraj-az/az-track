@@ -19,14 +19,7 @@ export class ProjectService {
 
     insert(data : JSON) {
         return this.httpService.post("http://localhost:8080/project/add", data)
-                                .map(this.successMessage)
                                 .catch(this.errorHandler);
-    }
-
-
-    successMessage(res : Response){
-        let body = res.json();
-        return body;
     }
 
 

@@ -18,32 +18,40 @@ export class IssueService {
 
     insert(data : JSON) {
         return this.httpService.post("http://localhost:8080/issue/add", data)
-                                .map(this.successMessage)
                                 .catch(this.errorHandler);
-    }
-
-    successMessage(res : Response){
-        let body = res.json();
-        return body;
-    }
-
-    errorHandler(error : HttpErrorResponse){
-        return Observable.throw(error.message || "Server Error");
-    }
-
-    findAll() {
-        return this.httpService.get("");
-    }
-
-    findById(id : Number) {
-        return this.httpService.get(this.url + "?" + id);
     }
 
     getIssue(){
         return this.httpService.get("/data/issue.json")
+                               .catch(this.errorHandler);
     } 
     
     getIssueType(){
         return this.httpService.get("/data/issuetype.json")
+                            .catch(this.errorHandler);
     } 
+
+    getProject(){
+        return this.httpService.get("/data/project.json")
+                               .catch(this.errorHandler);
+    }
+
+    issueFindById(id) {
+        return this.httpService.get("/data/issue.json" + "?" + id)
+                               .catch(this.errorHandler);
+    }
+
+    issueUpdate(id : Number , data) {
+        return this.httpService.update(this.url + "?" , id)
+                               .catch(this.errorHandler);
+    }
+
+    issueDelete(id : Number) {
+        return this.httpService.delete(this.url + "?" + id);
+    }
+
+
+    errorHandler(error : HttpErrorResponse){
+        return Observable.throw(error.message || "Server Error");
+    }
 }

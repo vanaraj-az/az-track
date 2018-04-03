@@ -1,7 +1,16 @@
 [{
+    "projectName" : "Agile Application",
     "issueType" : "Epic",
     "title" : "AZTrack",
     "description" : "Project management system",
-    "originalEstimation" : "10 Hours",
-    "attachment" : ""
+    "realEstimation" : "10",
+    "upload" : "npm-debug.log"
+},
+{
+    "projectName" : "Agile Application",
+    "issueType" : "Epic",
+    "title" : "AZTrack",
+    "description" : "Project management system",
+    "realEstimation" : "10",
+    "upload" : "npm-debug.log"
 }]

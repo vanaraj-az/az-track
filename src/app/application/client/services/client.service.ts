@@ -21,13 +21,7 @@ export class ClientService {
 
     insert(data : JSON) {
         return this.httpService.post("http://localhost:8080/client/update", data)
-                                .map(this.successMessage)
                                 .catch(this.errorHandler);  
-    }
-
-    successMessage(res : Response){
-        let body = res.json();
-        return body;
     }
 
 
@@ -47,7 +41,7 @@ export class ClientService {
 
     
     update(id : Number , data) {
-        return this.httpService.update(this.url + "/" , id);
+        return this.httpService.update(this.url + "?" , id);
     }
 
 

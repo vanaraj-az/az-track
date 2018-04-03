@@ -10,6 +10,7 @@ import { IssueService } from './../services/issue.service';
 export class IssueListComponent implements OnInit {
     issueForm : FormGroup;
     issueList : any = [];
+    projectList : any = [];
     i : any;
     index = 0;
 
@@ -19,8 +20,8 @@ export class IssueListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.issueService.getIssue().subscribe(
-            data => this.issueList =data
+        this.issueService.getProject().subscribe(
+            data => this.projectList =data
         );
     }
 
@@ -35,6 +36,12 @@ export class IssueListComponent implements OnInit {
         console.log(i);
         this.issueForm.patchValue(this.issueList[i]);
         this.issueList[this.i] = this.issueForm.value;
+    }
+
+    issueLists(projectName){
+        this.issueService.insert(projectName).subscribe(
+            data => this.issueList = data
+        );
     }
 
     }

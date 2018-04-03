@@ -1,1 +1,11 @@
-["Assistanz","ICICI","KPN Travels"]
+[{
+    "projectName" : "AZTrack",
+    "description" : "Project management system",
+    "client" : "Assistanz"
+},
+{
+    "projectName" : "Agile Application",
+    "description" : "Project management system",
+    "client" : "Assistanz"
+}
+]

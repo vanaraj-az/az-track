@@ -5,7 +5,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-sm-2 col-xs- 2 col-form-label">Company Name</label>
                     <div class="col-md-10 col-xs-10 col-sm-10">
-                        <input type="text" placeholder="please enter the name" [ngClass]="{'is-invalid':clientForm.get('companyName').invalid }" class="form-control" formControlName="companyName">
+                        <input type="text" placeholder="please enter the name" [ngClass]="{'is-invalid':clientForm.get('companyName').invalid && clientForm.get('companyName').touched}" class="form-control" formControlName="companyName">
                         <div class="invalid-feedback">
                             <error-required [controls]="clientForm.get('companyName')">
                                 This field is required
@@ -20,7 +20,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-sm-2 col-xs-2 col-form-label">Address</label>
                     <div class="col-md-10 col-sm-10 col-xs-10">
-                        <textarea type="text" placeholder="please enter the address" [ngClass]="{'is-invalid': clientForm.get('address').invalid }" class="form-control" formControlName="address"></textarea>
+                        <textarea type="text" placeholder="please enter the address" [ngClass]="{'is-invalid': clientForm.get('address').invalid && clientForm.get('address').touched }" class="form-control" formControlName="address"></textarea>
                         <div class="invalid-feedback">
                             <error-required [controls]="clientForm.get('address')">
                                 This field is required
@@ -32,7 +32,7 @@
                 <div class="form-group row">
                     <label for="staticEmail" class="col-md-2 col-xs-2 col-sm-2 col-form-label">Email</label>
                     <div class="col-md-10 col-sm-10 col-xs-10">
-                        <input type="text" placeholder="please enter the email" [ngClass]="{'is-invalid': clientForm.get('email').invalid }" class="form-control" formControlName="email">
+                        <input type="text" placeholder="please enter the email" [ngClass]="{'is-invalid': clientForm.get('email').invalid && clientForm.get('email').touched }" class="form-control" formControlName="email">
                         <div class="invalid-feedback">
                             <error-required [controls]="clientForm.get('email')">
                                 This field is required
@@ -47,7 +47,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-sm-2 col-xs-2 col-form-label">Phone Number</label>
                     <div class="col-md-10 col-sm-10 col-xs-10">
-                        <input type="text" placeholder="please enter the number" [ngClass]="{'is-invalid': clientForm.get('phoneNumber').invalid }" class="form-control" formControlName="phoneNumber">
+                        <input type="text" placeholder="please enter the number" [ngClass]="{'is-invalid': clientForm.get('phoneNumber').invalid && clientForm.get('phoneNumber').touched }" class="form-control" formControlName="phoneNumber">
                         <div class="invalid-feedback">
                             <error-required [controls]="clientForm.get('phoneNumber')">
                                 Required Field
@@ -68,7 +68,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-sm-2 col-xs-2 col-form-label" for="typeahead-focus">Country</label>
                     <div class="col-md-10 col-sm-10 col-xs-10">
-                        <input id="typeahead-focus" placeholder="search" type="text" [ngClass]="{'is-invalid': clientForm.get('country').invalid }" (click)="click$.next($event.target.value)" ngbTypeahead-editable="false" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" (focus)="focus$.next($event.target.value)" #instance="ngbTypeahead" formControlName="country">
+                        <input id="typeahead-focus" placeholder="search" type="text" [ngClass]="{'is-invalid': clientForm.get('country').invalid && clientForm.get('country').touched }" (click)="click$.next($event.target.value)" ngbTypeahead-editable="false" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" (focus)="focus$.next($event.target.value)" #instance="ngbTypeahead" formControlName="country">
                         <div class="invalid-feedback">
                             <error-required [controls]="clientForm.get('country')">
                                 Required Field
@@ -93,7 +93,7 @@
                             <div *ngFor="let contactPerson of clientForm.get('contactPerson').controls; let i = index;">
                                 <div [formGroupName]="i" class="row">
                                     <div class="form-group col-md-3 col-xs-3 col-sm-3">
-                                        <input type="text" [ngClass]="{'is-invalid': contactPerson.get('name').invalid }" class="form-control" formControlName="name">
+                                        <input type="text" [ngClass]="{'is-invalid': contactPerson.get('name').invalid && contactPerson.get('name').touched }" class="form-control" formControlName="name">
                                         <div class="invalid-feedback">
                                             <error-required [controls]="contactPerson.get('name')">
                                                 Required Field
@@ -105,7 +105,7 @@
                                     </div>
             
                                     <div class="form-group col-md-3 col-sm-3 col-xs-3">
-                                        <input type="text" [ngClass]="{'is-invalid': contactPerson.get('responsible').invalid }" class="form-control" formControlName="responsible">
+                                        <input type="text" [ngClass]="{'is-invalid': contactPerson.get('responsible').invalidv && contactPerson.get('responsible').touched }" class="form-control" formControlName="responsible">
                                         <div class="invalid-feedback">
                                             <error-required [controls]="contactPerson.get('responsible')">
                                                 Required Field
@@ -114,7 +114,7 @@
                                     </div>
             
                                     <div class="form-group col-md-2 col-sm-2 col-xs-2">
-                                        <input type="text" [ngClass]="{'is-invalid': contactPerson.get('phoneNumber').invalid }" class="form-control" formControlName="phoneNumber">
+                                        <input type="text" [ngClass]="{'is-invalid': contactPerson.get('phoneNumber').invalid && contactPerson.get('phoneNumber').touched }" class="form-control" formControlName="phoneNumber">
                                         <div class="invalid-feedback">
                                             <error-required [controls]="contactPerson.get('phoneNumber')">
                                                 Required Field
@@ -132,7 +132,7 @@
                                     </div>
             
                                     <div class="form-group col-md-3 col-sm-3 col-xs-3">
-                                        <input type="text" [ngClass]="{'is-invalid': contactPerson.get('email').invalid }" class="form-control" formControlName="email">
+                                        <input type="text" [ngClass]="{'is-invalid': contactPerson.get('email').invalid && contactPerson.get('email').touched }" class="form-control" formControlName="email">
                                         <div class="invalid-feedback">
                                             <error-required [controls]="contactPerson.get('email')">
                                                 This field is required

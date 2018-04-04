@@ -1,1 +1,20 @@
-["Epic","Story","Task","SubTask","Bug"]
+[{
+    "id" : 1,
+    "issueName" : "Stoty"
+},
+{
+    "id" : 2,
+    "issueName" : "Epic"
+},
+{
+    "id" : 3,
+    "issueName" : "Task"
+},
+{
+    "id" : 4,
+    "issueName" : "subTask"
+},
+{
+    "id" : 5,
+    "issueName" : "Bug"
+}]

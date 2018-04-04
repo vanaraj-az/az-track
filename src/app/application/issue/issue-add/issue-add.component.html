@@ -7,13 +7,13 @@
                     <div class="col-md-10 col-sm-10 col-xs-10">
                         <select [ngClass]="{'is-invalid': issueForm.get('projectName').invalid && issueForm.get('projectName').touched }" class="form-control" formControlName="projectName">
                             <option hidden>Nothing Selected</option>
-                            <option *ngFor="let project of projectList;let i=index;" [value]="project">{{project.projectName}}</option>
-                            <div class="invalid-feedback">
-                                <error-required [controls]="issueForm.get('projectName')">
-                                    This field is required
-                                </error-required>
-                            </div>
+                            <option *ngFor="let project of projectList;let id=index;" [value]="project.id">{{project.projectName}}</option>
                         </select>
+                        <div class="invalid-feedback">
+                            <error-required [controls]="issueForm.get('projectName')">
+                                This field is required
+                            </error-required>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                     <div class="col-md-10 col-sm-10 col-xs-10">
                         <select [ngClass]="{'is-invalid': issueForm.get('issueType').invalid && issueForm.get('issueType').touched}" class="form-control" formControlName="issueType">
                             <option hidden>Nothing Selected</option>
-                            <option *ngFor="let issueType of issueType;let i=index;">{{issueType}}</option>
+                            <option *ngFor="let issue of issueType;let id=index;"  [value]="issue.id">{{issue.issueName}}</option>
                         </select>
                         <div class="invalid-feedback">
                             <error-required [controls]="issueForm.get('issueType')">
@@ -61,7 +61,7 @@
                 <div class="form-group row">
                     <label for="staticEmail" class="col-md-2 col-xs-2 col-sm-2 col-form-label">Original Estimation</label>
                     <div class="col-md-10 col-sm-10 col-xs-10">
-                        <input class="form-control" placeholder="Hours" [ngClass]="{'is-invalid': issueForm.get('realEstimation').invalid && issueForm.get('realEstimation').touched}" formControlName="realEstimation">
+                        <input type="number" class="form-control" placeholder="Hours" [ngClass]="{'is-invalid': issueForm.get('realEstimation').invalid && issueForm.get('realEstimation').touched}" formControlName="realEstimation">
                         <div class="invalid-feedback">
                             <error-required [controls]="issueForm.get('realEstimation')">
                                 This field is required
@@ -75,44 +75,14 @@
                         </div>
                     </div>
                 </div>
-<!-- 
-                <div formArrayName="fileUpload" class=" container">
-                    <div *ngFor="let fileUpload of issueForm.get('fileUpload').controls; let i = index;">
-                        <div [formGroupName]="i" class="row">
-                            <div class="col-md-2 col-xs-2 col-sm-2 col-form-label">
-                                <label>Attachment</label>
-                            </div>
-                            <div class="col-md-10 col-sm-10 col-xs-10">
-                                <div class="form-group">
-                                    <div class="form-group form-inline">
-                                        <label class="btn btn-secondary btn-file">
-                                            <input name="file" multiple type="file" (change)="onFileChange($event)">
-                                            <input type="hidden" name="fileHidden" formControlName="upload">
-                                        </label>
-                                    </div> 
-                                    <div class="invalid-feedback">
-                                        <error-required [controls]="fileUpload.get('upload')">
-                                            This field is required
-                                        </error-required>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
                 <div class="form-group row">
                     <label for="staticEmail" class="col-md-2 col-xs-2 col-sm-2 col-form-label">Attachment</label>
-                    <div class="col-md-10 col-sm-10 col-xs-10">
+                    <div class="col-md-8 col-sm-8 col-xs-8">
                         <div class="form-group form-inline">
                             <label class="btn btn-secondary btn-file">
                                 <input type="file" name="file" (change)="onFileChange($event)">
                                 <input type="hidden" name="fileHidden" formControlName="upload">
-                                <div class="invalid-feedback">
-                                    <error-required [controls]="issueForm.get('upload')">
-                                        This field is required
-                                    </error-required>
-                                </div>
-                            </label>
+                            </label>optional
                         </div> 
                     </div>
                 </div>
@@ -145,7 +115,7 @@
                         <div class="col-md-3">
                             <select class="form-control">
                                 <option hidden>Nothing Selected</option>
-                                <option *ngFor="let projectList of projectList;let i=index;" (change)="getIssueList(id)">{{projectList}}</option>
+                                <option *ngFor="let project of projectList;let id=index;" value= {{project.id}} (change)="getIssueList(id)">{{project.projectName}}</option>
                                 <label *ngIf ="errorMsg" [ngClass]="'error'" class="alert alert-danger">{{errorMsg}}</label>
                             </select>
                         </div>
@@ -165,8 +135,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let issue of issueList;let i=index;" class="text-center">
-                                    <td>{{i+1}}</td>
+                                <tr *ngFor="let issue of issueList;let id=index;" class="text-center">
+                                    <td>{{issue.id}}</td>
                                     <td>{{issue.projectName}}</td>
                                     <td>{{issue.issueType}}</td>
                                     <td>{{issue.title}}</td>
@@ -177,7 +147,7 @@
                                         <div ngbDropdown>
                                             <button class="btn btn-outline-secondary" id="dropdownConfig" ngbDropdownToggle>Action</button>
                                             <div ngbDropdownMenu aria-labelledby="dropdownConfig">
-                                            <button class="dropdown-item" (click)="editIssueList(i)">Edit</button>
+                                            <button class="dropdown-item" (click)="editIssueList(id)">Edit</button>
                                             <button class="dropdown-item" (click)="deleteIssueList(id)">Delete</button>
                                             </div>
                                         </div>

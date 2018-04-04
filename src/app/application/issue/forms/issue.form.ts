@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, Validators , FormArray}  from '@angular/forms';
+import { FormBuilder, Validators , FormArray, }  from '@angular/forms';
 
 @Injectable()
 export class IssueForm {
@@ -16,11 +16,7 @@ export class IssueForm {
             "title"  : ["", Validators.required],
             "description" : ["", Validators.required],
             "realEstimation" : ["", [Validators.required, Validators.maxLength(2), Validators.pattern('[0-9]+')]],
-            // "fileUpload" : this.fb.array([ 
-            //     this.fb.group({ 
-                     "upload" : ["", Validators.required]
-            //     })
-            //  ])
+            "upload" : [""]
         });
     }
 }

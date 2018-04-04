@@ -48,6 +48,13 @@ export class ClientAddComponent  {
            
         }
 
+        ngOnInit(){
+            this.clientService.getCountry().subscribe(
+                data =>{
+                    this.countryData=data;
+                    }
+            );
+        } 
 
         addMoreContact() : void {
             this.controls = this.clientForm.get("contactPerson") as FormArray;
@@ -68,14 +75,6 @@ export class ClientAddComponent  {
             this.controls.removeAt(this.i);
         }
         
-    
-        ngOnInit(){
-            this.clientService.getCountry().subscribe(
-                data =>{
-                    this.countryData=data;
-                    }
-            );
-        } 
 
         submitClient(){
                 

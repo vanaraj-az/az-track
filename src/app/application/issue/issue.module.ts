@@ -27,7 +27,10 @@ const issueRoutes : Routes = [
         BrowserAnimationsModule,
         RouterModule.forRoot(issueRoutes),
         NgbModule.forRoot(),
-        ToastrModule.forRoot()
+        ToastrModule.forRoot({
+            timeOut: 5000,
+            preventDuplicates: true,
+          })
     ],
     declarations: [
         IssueComponent,

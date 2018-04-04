@@ -22,32 +22,32 @@ export class IssueService {
     }
 
     getIssue(){
-        return this.httpService.get("/data/issue.json")
+        return this.httpService.get("/http://localhost:8080/issue/listissue")
                                .catch(this.errorHandler);
     } 
     
     getIssueType(){
-        return this.httpService.get("/data/issuetype.json")
+        return this.httpService.get("http://localhost:8080/issue/issuetype")
                             .catch(this.errorHandler);
     } 
 
     getProject(){
-        return this.httpService.get("/data/project.json")
+        return this.httpService.get("http://localhost:8080/issue/project")
                                .catch(this.errorHandler);
     }
 
     issueFindById(id) {
-        return this.httpService.get("/data/issue.json" + "?" + id)
+        return this.httpService.get("http://localhost:8080/issue/listissue" + "?" + id)
                                .catch(this.errorHandler);
     }
 
     issueUpdate(id : Number , data) {
-        return this.httpService.update(this.url + "?" , id)
+        return this.httpService.update("http://localhost:8080/issue/edit" + "?" , id)
                                .catch(this.errorHandler);
     }
 
     issueDelete(id : Number) {
-        return this.httpService.delete(this.url + "?" + id);
+        return this.httpService.delete("http://localhost:8080/issue/delete" + "?" + id);
     }
 
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, Validators }  from '@angular/forms';
 
 @Injectable()
-export class WorkLogForm {
+export class WorklogForm {
     private fb : FormBuilder;
 
     constructor() {
@@ -11,12 +11,25 @@ export class WorkLogForm {
 
     getForm() {
         return this.fb.group({
-            "projectName" : [" ", [Validators.required,Validators.minLength(10)]],
-            "projectId" : [" ", [Validators.required,Validators.minLength(10)]],
-            "workedHours" : ["",Validators.required],
-            "attachment" : ["",Validators.required],
+            "id" : "",
+            "projectId" : [" ", Validators.required],
+            "issueId" : [" ", Validators.required],
+            "title" : ["",[Validators.required,Validators.minLength(5)]],
+            "workedHours" : ["",Validators.required,Validators.maxLength(2)],
+            "filePath" : ["",Validators.required],
             "comments" : ["",Validators.required],
-            "status" : ["",Validators.required]
+            "statusId" : ["",Validators.required]
         });
+    }
+
+    filePath(){
+        
+    }
+
+    projectListForm(){
+        return this.fb.group({
+            "projectId" : "",
+            "issueId" : ""
+        })
     }
 }

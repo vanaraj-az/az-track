@@ -5,7 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { WorkLogComponent } from './worklog.component';
 import { WorkLogListComponent } from './worklog-list/worklog-list.component';
-import { WorkLogService } from './services/worklog.service';
+import { WorkLogAddComponent } from './worklog-add/worklog-add.component';
+import { WorklogService } from './services/worklog.service';
 import { AppCommonModule } from '../../common/common.module';
 
 const worklogRoutes : Routes = [
@@ -25,10 +26,11 @@ const worklogRoutes : Routes = [
     ],
     declarations: [
         WorkLogComponent,
+        WorkLogAddComponent,
         WorkLogListComponent
     ],
     providers : [
-        WorkLogService
+        WorklogService
     ]
 })
 export class WorkLogModule { }

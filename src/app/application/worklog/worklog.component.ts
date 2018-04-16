@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { WorkLogService } from "./services/worklog.service";
-import { WorkLogForm} from './forms/worklog.form';
 import {NgbTypeahead} from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -12,21 +10,13 @@ import {NgbTypeahead} from '@ng-bootstrap/ng-bootstrap';
 export class WorkLogComponent implements OnInit {
      worklogForm : FormGroup;
 
-    constructor(private worklogService : WorkLogService) {
-        let worklogForm = new WorkLogForm();
-        this.worklogForm = worklogForm.getForm();
-    }
+    constructor() {
+          }
 
     ngOnInit() {
 
     }
 
-    // clientAdd() {
-    //     this.clientService.insert(this.clientForm.value).subscribe(
-    //         data => {
-    //         }
-    //     );
-    // }
 }
 
 

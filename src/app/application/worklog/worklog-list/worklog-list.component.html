@@ -1,107 +1,211 @@
-
 <div class="page-content">
-    <form  [formGroup]="workLogForm">
-        <div class="row">
-            <div class="col-md-12 col-md-sm col-xs-12">
-                <div class="form-group row">
-                    <label for="staticEmail" class="col-md-2 col-sm-2 col-xs-2 col-form-label">Project Name</label>
-                    <div class="col-md-10 col-sm-10 col-xs-10">
-                        <input type="text" [ngClass]="{'is-invalid': workLogForm.get('projectName').invalid}" class="form-control" placeholder="Enter the project name" formControlName="projectName">
-                        <option *ngFor="let project of project ">{{projectData}}</option>
-                        <div class="invalid-feedback">
-                            <error-required [controls]="workLogForm.get('projectName')">
-                                This field is required
-                            </error-required>
-                            <error-minlength [controls]="workLogForm.get('projectName')">
-                                Too short
-                            </error-minlength>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="staticEmail" class="col-md-2 col-sm-2 col-xs-2 col-form-label">Project ID</label>
-                    <div class="col-md-10 col-sm-10 col-xs-10">
-                        <input type="text" [ngClass]="{'is-invalid': workLogForm.get('projectId').invalid}" class="form-control" placeholder="project Id" formControlName="projectId">
-                        <div class="invalid-feedback">
-                            <error-required [controls]="workLogForm.get('projectId')">
-                                This field is required
-                            </error-required>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="staticEmail" class="col-md-12 col-sm-12 col-xs-12 col-form-label">Original Estimation Time </label>
-                </div>
-               
-                <div class="form-group row">
-                    <label for="staticEmail" class="col-md-2 col-sm-2 col-xs-2 col-form-label">Worked Hours</label>
-                    <div class="col-md-2 col-sm-2 col-xs-2">
-                        <input type="text" [ngClass]="{'is-invalid': workLogForm.get('workedHours').invalid}" class="form-control" placeholder="worked hours" formControlName="workedHours">
-                        <div class="invalid-feedback">
-                            <error-required [controls]="workLogForm.get('workedHours')">
-                                This field is required
-                            </error-required>
-                        </div>
-                    </div>
-                    <label for="staticEmail" class="col-md-2 col-sm-2 col-xs-2 col-form-label">Worked Hours</label>
-                    <div class="col-md-2 col-sm-2 col-xs-2">
-                        <input type="text" [ngClass]="{'is-invalid': workLogForm.get('workedHours').invalid}" class="form-control" placeholder="worked hours" formControlName="workedHours">
-                        <div class="invalid-feedback">
-                            <error-required [controls]="workLogForm.get('workedHours')">
-                                This field is required
-                            </error-required>
-                        </div>
-                    </div>
-                </div>
-                
-
-                <div class="form-group row">
-                    <label for="staticEmail" class="col-md-2 col-xs-2 col-sm-2 col-form-label">Attachment</label>
-                    <div class="col-md-10 col-sm-10 col-xs-10">
-                        <input type="file" [ngClass]="{'is-invalid': workLogForm.get('attachment').invalid}" class="form-control" formControlName="attachment">
-                    </div>
-               </div>
-
-                <div class="form-group row">
-                    <label for="staticEmail" class="col-md-2 col-xs-2 col-sm-2 col-form-label">Comments</label>
-                    <div class="col-md-10 col-sm-10 col-xs-10">
-                        <textarea type="text" placeholder="Enter the Comments" class="form-control" formControlName="comments"></textarea>
-                        <div class="invalid-feedback">
-                            <error-required [controls]="workLogForm.get('comments')">
-                                This field is required
-                            </error-required>
-                            <error-minlength [controls]="workLogForm.get('comments')">
-                                Too short
-                            </error-minlength>
-                        </div> 
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="staticEmail" class="col-md-2 col-xs-2 col-sm-2 col-form-label">Status</label>
-                    <div class="col-md-10 col-sm-10 col-xs-10">
-                        <select type="text" [ngClass]="{'is-invalid': workLogForm.get('status').invalid}" class="form-control" formControlName="status">
-                            <option *ngFor="let status of status">{{status}}</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            <error-required [controls]="workLogForm.get('status')">
-                                This field is required
-                            </error-required>
-                        </div>
-                    </div>
-                </div>
+    <form  [formGroup]="projectListForm">
+        <div class="row form-group">
+            <div text-primary class="col-md-2">Select Project</div>
+            <div class="col-md-3">
+                <select class="form-control custom-select" (change)="onChange(selectedProject)" [(ngModel)]="selectedProject" name="projectId" formControlName="projectId">
+                    <option hidden>Nothing Selected</option>
+                    <option *ngFor="let project of projectList;let id=index;" [ngValue]="project.id">{{project.projectName}}</option>
+                    <label *ngIf ="errorMsg" [ngClass]="'error'" class="alert alert-danger">{{errorMsg}}</label>
+                </select>
             </div>
         </div>
+        <div class="row form-group">
+            <div text-primary class="col-md-2">Select Issue</div>
+            <div class="col-md-2">
+                <select class="form-control custom-select" (change)="onChange(selectedIssue)" [(ngModel)]="selectedIssue" name="issueId" formControlName="issueId">
+                    <option hidden>Nothing Selected</option>
+                    <option *ngFor="let issue of issueList;let id=index;" [ngValue]="issue.id">{{issue.issueName}}</option>
+                    <label *ngIf ="errorMsg" [ngClass]="'error'" class="alert alert-danger">{{errorMsg}}</label>
+                </select>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr class="text-center text-secondary font-italic">
+                        <th>#</th>
+                        <th>Project Name</th>
+                        <th>Issue Name</th>
+                        <th>Title</th>
+                        <th>Worked Hours</th>
+                        <th>Comments</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let worklog of worklogList;let id=index;" class="text-center">
+                        <td>{{id+1}}</td>
+                        <td>{{worklog.projectName}}</td>
+                        <td>{{worklog.issueName}}</td>
+                        <td>{{worklog.title}}</td>
+                        <td>{{worklog.workedHours}}</td>
+                        <td>{{worklog.comments}}</td>
+                        <td>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div>
+                                        <button class="btn btn-sm btn-info" (click)="editWorklog(content,worklog.id)"><i class="far fa-edit"></i></button>
+                                    </div>
+                                    <ng-template #content let-c="close" let-d="dismiss">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Create Worklog</h4>
+                                            <button type="button" class="close" aria-label="Close"  (click)="d('Cross click')">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form  [formGroup]="worklogForm">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-md-sm col-xs-12">
+                                                        <div class="row form-group">
+                                                            <div class="col-md-3 col-xs-3 col-sm-3 col-form-label">Select Project Name</div>
+                                                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                                                <select class="form-control custom-select" [ngClass]="{'is-invalid': worklogForm.get('projectId').invalid && worklogForm.get('projectId').touched}" (change)="onChangeIssue(selectedProject)" [(ngModel)]="selectedProject" name="projectId" formControlName="projectId">
+                                                                    <option hidden>Nothing Selected</option>
+                                                                    <option *ngFor="let project of projectList;let id=index;" [ngValue]="project.id">{{project.projectName}}</option>
+                                                                    <label *ngIf ="errorMsg" [ngClass]="'error'" class="alert alert-danger">{{errorMsg}}</label>
+                                                                </select>
+                                                                <div class="invalid-feedback">
+                                                                    <error-required [controls]="worklogForm.get('projectId')">
+                                                                        This field is required
+                                                                    </error-required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                
+                                                    <div class="col-md-12 col-md-sm col-xs-12">
+                                                        <div class="form-group row">
+                                                            <label  class="col-md-3 col-xs-3 col-sm-3 col-form-label">Select Issue</label>
+                                                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                                                <select [ngClass]="{'is-invalid': worklogForm.get('issueId').invalid && worklogForm.get('issueId').touched}"  (change)="onChangeEstimation(selectedEstimation)" [(ngModel)]="selectedEstimation" name="issueId"  class="form-control" formControlName="issueId">
+                                                                    <option *ngFor="let issue of issueList;let id=index;"  [value]="issue.id">{{issue.issueName}}</option>
+                                                                    <label *ngIf ="" [ngClass]="'error'" class="alert alert-danger">{{errorMsg}}</label>
+                                                                </select>
+                                                                <div class="invalid-feedback">
+                                                                    <error-required [controls]="worklogForm.get('issueId')">
+                                                                        This field is required
+                                                                    </error-required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                
+                                                    <div class="col-md-12 col-md-sm col-xs-12">
+                                                        <div class="form-group row">
+                                                            <label class="col-md-3 col-xs-3 col-sm-3 col-form-label">Title</label>
+                                                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                                                <input type="number" [ngClass]="{'is-invalid': worklogForm.get('title').invalid && worklogForm.get('title').touched}" class="form-control" formControlName="title">
+                                                                <div class="invalid-feedback">
+                                                                    <error-required [controls]="worklogForm.get('title')">
+                                                                        This field is required
+                                                                    </error-required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                
+                                                    <div class="col-md-12 col-md-sm col-xs-12">
+                                                        <div class="form-group row">
+                                                            <label class="col-md-3 col-xs-3 col-sm-3 col-form-label">Original Estimation</label>
+                                                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                                                <input type="text"  class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                
+                                                    <div class="col-md-12 col-md-sm col-xs-12">
+                                                        <div class="row">
+                                                            <div class="col-md-1"></div>
+                                                            <div class="col-md-5">
+                                                                <div class="form-group row">
+                                                                    <label class="col-md-6 col-xs-6 col-sm-6 col-form-label">Worked Hours</label>
+                                                                    <div class="col-md-5 col-sm-5 col-xs-5">
+                                                                        <input type="text" [ngClass]="{'is-invalid': worklogForm.get('workedHours').invalid && worklogForm.get('workedHours').touched}" class="form-control" formControlName="workedHours">
+                                                                        <div class="invalid-feedback">
+                                                                            <error-required [controls]="worklogForm.get('workedHours')">
+                                                                                This field is required
+                                                                            </error-required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <div class="form-group row">
+                                                                    <label class="col-md-7 col-xs-7 col-sm-7 col-form-label">Remaining Hours</label>
+                                                                    <div class="col-md-5 col-sm-5 col-xs-5">
+                                                                        <input type="text" class="form-control">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                
+                                                    <div class="col-md-12 col-md-sm col-xs-12">
+                                                        <div class="form-group row">
+                                                            <label for="staticEmail" class="col-md-3 col-xs-3 col-sm-3 col-form-label">Attachment</label>
+                                                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                                                <div class="form-group form-inline">
+                                                                    <label class="btn btn-secondary btn-file">
+                                                                        <input type="file" name="file" (change)="onFileChange($event)">
+                                                                        <input type="hidden" name="fileHidden" formControlName="upload">
+                                                                    </label>optional
+                                                                </div> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                
+                                                    <div class="col-md-12 col-md-sm col-xs-12">
+                                                        <div class="form-group row">
+                                                            <label for="staticEmail" class="col-md-3 col-xs-3 col-sm-3 col-form-label">Comments</label>
+                                                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                                                <textarea type="text" placeholder="Enter the description" [ngClass]="{'is-invalid': worklogForm.get('comments').invalid && worklogForm.get('comments').touched}" class="form-control" formControlName="comments"></textarea>
+                                                                <div class="invalid-feedback">
+                                                                    <error-required [controls]="worklogForm.get('comments')">
+                                                                        This field is required
+                                                                    </error-required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                
+                                                    <div class="col-md-12 col-md-sm col-xs-12">
+                                                        <div class="form-group row">
+                                                            <label  class="col-md-3 col-xs-3 col-sm-3 col-form-label">Status</label>
+                                                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                                                <select [ngClass]="{'is-invalid': worklogForm.get('statusId').invalid && worklogForm.get('statusId').touched}" class="form-control" formControlName="statusId">
+                                                                    <option *ngFor="let status of statusList;let id=index;"  [value]="status.id">{{status.statusName}}</option>
+                                                                </select>
+                                                                <div class="invalid-feedback">
+                                                                    <error-required [controls]="worklogForm.get('statusId')">
+                                                                        This field is required
+                                                                    </error-required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <label *ngIf ="submitError" [ngClass]="'error'" class="alert alert-danger">{{submitError}}</label>
+                                            <label *ngIf ="getError" [ngClass]="'error'" class="alert alert-danger">{{getError}}</label>
+                                            <label *ngIf ="editError" [ngClass]="'error'" class="alert alert-danger">{{editError}}</label>
+                                            <button class="btn btn-outline-primary float-right" [disabled]="!worklogForm.valid" (click)="submitWorklog()">Submit</button>
+                                            <button type="button" class="btn btn-primary" (click)="c('Close click')">Close</button>
+                                        </div>
+                                    </ng-template>
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-danger" (click)="deleteWorklogList(worklog.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </form>
-    <div class="row">
-        <div class="col-md-10 col-sm-10 col-xs-10"></div>
-        <div class="col-md-1 col-sm-1 col-xs-1">
-            <a href=""><button type="submit" class="btn btn-outline-primary float-right" >Back</button></a>
-        </div>
-        <div class="col-md-1 col-sm-1 col-xs-1">
-            <button [disabled]="!workLogForm.valid" class="btn btn-outline-primary float-right">Save</button>
-        </div>
-    </div>
 </div>

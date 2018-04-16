@@ -18,14 +18,14 @@ import { empty } from 'rxjs/Observer';
 
 
 @Component({
-    selector : 'worklog-list',
-    templateUrl: 'worklog-list.component.html',
+    selector : 'worklog-add',
+    templateUrl: 'worklog-add.component.html',
     encapsulation: ViewEncapsulation.None,
    })
-export class WorkLogListComponent implements OnInit {
+export class WorkLogAddComponent implements OnInit {
     
     worklogForm : FormGroup;
-    projectListForm : FormGroup;
+
     closeResult: string;
     issueList : any = [];
     statusList : any = [];
@@ -39,48 +39,36 @@ export class WorkLogListComponent implements OnInit {
     editError : any;
     realEstimation : any;
     selectedProject : any;
-    selectedIssue : any;
     selectedEstimation : any;
     projectList : any = [];
     fileArray : any = [];
     editList : any = [];
+    subtractValue : any;
+    subtractError : any;
     index = 0; 
 
     constructor(private worklogService: WorklogService, private tostr: ToastrService, private modalService: NgbModal) {
         let issue = new WorklogForm;
         this.worklogForm = issue.getForm();  
-        this.projectListForm = issue.projectListForm(); 
-
     }
 
 
     ngOnInit() {
         this.getProjectList();
+        this.getStatusList();
     }
-
-    
-    onChangeIssue(id):void{
-        this.getIssueList(id);
-    }
-
-
-    onChangeEstimation(id):void{
-        this.getRealEstimation(id);
-    }
-
-
-    getStatusList(){
-        this.worklogService.getStatusList().subscribe(
-            data => this.statusList = data
-        );
-    }
-
 
     getProjectList(){
         this.worklogService.getProject().subscribe(
             data => this.projectList = data
         );
     }
+    
+
+    onChangeIssue(id):void{
+        this.getIssueList(id);
+    }
+
 
     getIssueList(id){
         this.worklogService.issueFindById(id).subscribe(
@@ -89,6 +77,36 @@ export class WorkLogListComponent implements OnInit {
         );
     }
 
+    onChangeValue(id):void{
+    }
+
+    onChangeEstimation(id):void{
+        this.getRealEstimation(id);
+    }
+
+
+    getRealEstimation(id){
+        this.worklogService.realEstimation(id).subscribe(
+            data => {
+                this.realEstimation = data;
+                let a = this.worklogForm.controls.workedHours.value;
+                if(a<this.realEstimation){
+                    this.subtractValue = this.realEstimation - a;
+                }
+                else{
+                    this.subtractError = "Worked Hours must be lesser than the Original Estimation"
+                }
+            }
+        );
+    }
+
+    getStatusList(){
+        this.worklogService.getStatusList().subscribe(
+            data => this.statusList = data
+        );
+    }
+
+
     getworklogList(id){
         this.worklogService.worklogFindById(id).subscribe(
             data => this.worklogList = data,
@@ -96,11 +114,6 @@ export class WorkLogListComponent implements OnInit {
         );
     }
 
-    getRealEstimation(id){
-        this.worklogService.realEstimation(id).subscribe(
-            data => this.realEstimation = data
-        );
-    }
 
     openLg(content) {
         this.modalService.open(content, { size: 'lg' });
@@ -112,32 +125,6 @@ export class WorkLogListComponent implements OnInit {
         let file = $event.target.files[0]; // <--- File Object for future use.
         this.worklogForm.controls['upload'].setValue(file ? file.name : ''); // <-- Set Value for Validation
     }
-
-    editIssue(content,id){
-        this.modalService.open(content, { size: 'lg' });
-        this.worklogService.selectworklog(id).subscribe(
-            data => {
-                this.editList = data;
-                console.log(this.editList);
-                this.worklogService.selectworklog(this.editList);
-                }
-        );
-        this.index = 1;
-    }
-
-    deleteIssueList(id){
-        alert("Are you sure you want to delete?");
-        this.worklogService.worklogDelete(id).subscribe( 
-            data => {
-                this.deleteMessage = data;
-                if(this.deleteMessage != null){
-                    this.tostr.warning('Deleted Succcessfully', 'Issue');
-                    window.location.reload();
-                }
-            }
-        );
-    }
-
 
 
     submitWorklog(){  
@@ -174,6 +161,6 @@ export class WorkLogListComponent implements OnInit {
                 );              
                 this.index = 0;
             }   
-            this.worklogForm.reset();
+        this.worklogForm.reset();
     }  
 }

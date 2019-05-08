@@ -1,4 +1,5 @@
 [{
+    "id" : 1,
     "companyName" : "Assistanz",
     "address"  : "Coimbatore",
     "email" : "vanaraj@assistanz.com",
@@ -10,6 +11,22 @@
             "responsible" : "Project",
             "phoneNumber" : "9944328923",
             "email" : "vanaraj@assistanz.com"
+        }
+    ]
+},
+{
+    "id" : 2,
+    "companyName" : "KAK",
+    "address"  : "Coimbatore",
+    "email" : "kak@assistanz.com",
+    "phoneNumber" : "9688847557",
+    "country" : "India",
+    "contactPerson" : [
+        {
+            "name" : "karunya",
+            "responsible" : "Project",
+            "phoneNumber" : "964787557",
+            "email" : "karunya@kak.com"
         }
     ]
 }]

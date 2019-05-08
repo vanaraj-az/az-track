@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClientComponent } from './client.component';
+import { ClientAddComponent } from './client-add/client-add.component';
 import {ClientListComponent} from './client-list/client-list.component';
 import { ClientService } from './services/client.service';
 
@@ -26,7 +27,8 @@ const clientRoutes : Routes = [
     ],
     declarations: [
         ClientComponent,
-        ClientListComponent
+        ClientListComponent,
+        ClientAddComponent
     ],
     providers : [
         ClientService

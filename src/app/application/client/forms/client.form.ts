@@ -4,7 +4,6 @@ import { FormBuilder, Validators }  from '@angular/forms';
 @Injectable()
 export class ClientForm {
     private fb : FormBuilder;
-    name : any;
 
     constructor() {
         this.fb = new FormBuilder();

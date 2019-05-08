@@ -31,7 +31,7 @@ export class HttpService {
         @return Observables
     **/
    update(url, data) {
-    return this.http.patch(url, data, { headers : this.httpHeader });
+    return this.http.put(url, data, { headers : this.httpHeader });
     }
 
      /** Post data to server
